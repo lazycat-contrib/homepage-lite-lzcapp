@@ -1,0 +1,25 @@
+services:
+  - group: Home
+    items:
+      - name: Home Assistant
+        url: https://homeassistant.local:8123
+        description: Home automation
+        icon: home-assistant.png
+
+      - name: Dockge
+        url: http://192.168.1.10:5001/
+        description: Dockge
+        icon: mdi-docker
+
+bookmarks:
+  - group: Developer
+    items:
+      - name: GitHub
+        url: https://github.com
+        abbr: GH
+
+settings:
+  theme: default
+  title: My Homelab
+  port: 8888
+# Configuration changes are detected automatically and trigger a page reload.

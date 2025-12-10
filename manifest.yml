@@ -1,0 +1,36 @@
+min_os_version: 1.3.8
+name: Homepage lite
+package: community.lazycat.app.homepage-lite
+version: 0.4.1
+description: "一个轻量级的、使用 Go 语言驱动的首页仪表板，用于管理和监控您的家庭实验室服务与书签。采用现代网络技术构建，支持实时更新。"
+homepage: https://github.com/jkerdreux-imt/homepage-lite/
+author: jkerdreux-imt
+application:
+  subdomain: homepage-lite
+  background_task: true
+  public_path:
+    - /
+
+  upstreams:
+    - location: /
+      backend: http://homepage-lite:8888/
+
+services:
+  homepage-lite:
+    # ghcr.io/jkerdreux-imt/homepage-lite:v0.4.1
+    image: registry.lazycat.cloud/czyt/jkerdreux-imt/homepage-lite:a41ff00b79ea58ca
+    container_name: bichon
+    binds:
+      - /lzcapp/var/config:/app/config/
+    setup_script: |
+      if [ ! -f "/app/config/config.yaml" ]; then
+        cp -rf /lzcapp/pkg/content/config.yaml /app/config/config.yaml
+      fi
+
+locales:
+  zh:
+    name: "Homepage lite"
+    description: "一个轻量级的、使用 Go 语言驱动的首页仪表板，用于管理和监控您的家庭实验室服务与书签。采用现代网络技术构建，支持实时更新。"
+  en:
+    name: "Homepage lite"
+    description: "A lightweight, Go-powered homepage dashboard for managing and monitoring your homelab services and bookmarks. Built with modern web technologies and real-time updates."
