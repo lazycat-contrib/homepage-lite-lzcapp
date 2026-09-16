@@ -6,11 +6,10 @@ application:
   upstreams:
     - location: /
       backend: http://homepage-lite:8888/
-
 services:
   homepage-lite:
-    # upstream: ghcr.io/jkerdreux-imt/homepage-lite:v0.4.1
-    image: ghcr.io/jkerdreux-imt/homepage-lite:v0.4.1
+    # upstream: ghcr.io/jkerdreux-imt/homepage-lite:v0.4.3
+    image: registry.lazycat.cloud/czyt/jkerdreux-imt/homepage-lite:d7d2c0469b911013
     binds:
       - /lzcapp/var/config:/app/config/
     setup_script: |

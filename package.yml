@@ -1,5 +1,5 @@
 package: community.lazycat.app.homepage-lite
-version: 0.4.1
+version: 0.4.3
 name: Homepage lite
 description: "一个轻量级的、使用 Go 语言驱动的首页仪表板，用于管理和监控您的家庭实验室服务与书签。采用现代网络技术构建，支持实时更新。"
 min_os_version: "1.5.0"
