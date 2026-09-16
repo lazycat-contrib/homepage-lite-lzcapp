@@ -1,0 +1,38 @@
+version: 1
+
+project:
+  root: .
+  build_config: lzc-build.yml
+  package_file: package.yml
+  output: .lazycat-build/homepage-lite.lpk
+  target_arch: amd64
+
+update:
+  strategy: publish
+  allow_downgrade: false
+  version_source:
+    type: image
+    image: homepage-lite
+build:
+  run_buildscript: false
+images:
+  # 主应用：上游 v-prefix 完整三段 SemVer 家族（v0.1.2 ... v0.4.3），排除 latest
+  - id: homepage-lite
+    target: service
+    service: homepage-lite
+    source: ghcr.io/jkerdreux-imt/homepage-lite
+    channel: stable
+    sort: semver
+    tag_regex: '^v?\d+\.\d+\.\d+$'
+    delivery:
+      mode: lazycat
+stores:
+  official:
+    enabled: true
+    skip_if_version_exists: true
+    changelog_locales: [zh, en]
+  private:
+    enabled: true
+    skip_if_version_exists: true
+    name: Homepage lite
+    summary: "一个轻量级的、使用 Go 语言驱动的首页仪表板，用于管理和监控您的家庭实验室服务与书签。采用现代网络技术构建，支持实时更新。"

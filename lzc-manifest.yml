@@ -1,0 +1,19 @@
+application:
+  subdomain: homepage-lite
+  background_task: true
+  public_path:
+    - /
+  upstreams:
+    - location: /
+      backend: http://homepage-lite:8888/
+
+services:
+  homepage-lite:
+    # upstream: ghcr.io/jkerdreux-imt/homepage-lite:v0.4.1
+    image: ghcr.io/jkerdreux-imt/homepage-lite:v0.4.1
+    binds:
+      - /lzcapp/var/config:/app/config/
+    setup_script: |
+      if [ ! -f "/app/config/config.yaml" ]; then
+        cp -rf /lzcapp/pkg/content/config.yaml /app/config/config.yaml
+      fi
